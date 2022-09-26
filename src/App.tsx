@@ -1,12 +1,22 @@
+import React, { useEffect } from 'react';
 import CheckboxList from './CheckboxList';
 import InputTask from './InputTask';
 
-import { useAppSelector } from './features/todoList/ToDoListSlice';
+import {
+  useAppSelector,
+  useAppDispatch,
+  initializeTasks,
+} from './features/todoList/ToDoListSlice';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 
 const App: React.FC = () => {
   const list = useAppSelector(state => state['todo list'].todos);
+  const dispatch = useAppDispatch();
   // const selectEditText = useAppSelector(state => state['todo list'].editText);
+
+  useEffect(() => {
+    dispatch(initializeTasks());
+  }, [dispatch]);
 
   return (
     <div className='App'>

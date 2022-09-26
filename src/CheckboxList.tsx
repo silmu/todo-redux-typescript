@@ -15,6 +15,7 @@ import {
   deleteTask,
   markAsDone,
   setEditText,
+  useAppSelector,
 } from './features/todoList/ToDoListSlice';
 
 const CheckboxList: React.FC<{
@@ -23,8 +24,20 @@ const CheckboxList: React.FC<{
   const [editOn, setEditOn] = useState({ state: false, id: 0 });
   const dispatch = useDispatch();
 
-  const handleToggleCheck: (taskName: string) => void = taskName => {
-    dispatch(markAsDone(taskName));
+  const selectEditText = useAppSelector(state => state['todo list'].editText);
+
+  const handleToggleCheck: (taskId: number) => void = taskId => {
+    dispatch(markAsDone(taskId));
+
+    //Mark task as done in localStorage
+    let updatedLocalTasks = JSON.parse(localStorage.getItem('tasks')!).map(
+      (t: { id: number; checked: boolean }) => {
+        if (t.id === taskId) t.checked = !t.checked;
+        return t;
+      }
+    );
+    console.log(updatedLocalTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedLocalTasks));
   };
 
   const toggleEdit: (task: { id: number; name: string }) => void = task => {
@@ -38,6 +51,16 @@ const CheckboxList: React.FC<{
     if (e.key === 'Enter') {
       setEditOn({ state: false, id: task.id });
       dispatch(editTask(task.id));
+
+      // Edit task in the local storage
+      let updatesLocalTasks = JSON.parse(localStorage.getItem('tasks')!).map(
+        (t: { id: number; name: string }) => {
+          if (t.id === task.id) t.name = selectEditText;
+          return t;
+        }
+      );
+      console.log(updatesLocalTasks);
+      localStorage.setItem('tasks', JSON.stringify(updatesLocalTasks));
     }
   };
 
@@ -46,6 +69,12 @@ const CheckboxList: React.FC<{
     name: string;
   }) => void = task => {
     dispatch(deleteTask(task.id));
+
+    //Delete task from local storage
+    let filtered = JSON.parse(localStorage.getItem('tasks')!).filter(
+      (t: { id: number }) => t.id !== task.id
+    );
+    localStorage.setItem('tasks', JSON.stringify([filtered]));
   };
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
@@ -90,7 +119,7 @@ const CheckboxList: React.FC<{
               ) : (
                 <ListItemButton
                   role={undefined}
-                  onClick={() => handleToggleCheck(task.name)}
+                  onClick={() => handleToggleCheck(task.id)}
                   dense
                 >
                   {/* Checkbox */}

@@ -14,6 +14,9 @@ export const todoListSlice = createSlice({
     editText: '',
   },
   reducers: {
+    setAllTasks: (state, action) => {
+      state.todos = action.payload;
+    },
     addTask: (state, action) => {
       state.todos.push({
         id: state.todos.length + 1,
@@ -23,7 +26,7 @@ export const todoListSlice = createSlice({
     },
     markAsDone: (state, action) => {
       state.todos.forEach(task => {
-        if (task.name === action.payload) {
+        if (task.id === action.payload) {
           task.checked = !task.checked;
         }
       });
@@ -53,6 +56,17 @@ export const {
   setEditText,
   markAsDone,
 } = todoListSlice.actions;
+
+//Initialize state if localStorage is not empty
+export const initializeTasks = () => {
+  const tasksFromLocal = localStorage.getItem('tasks') || null;
+  if (tasksFromLocal) {
+    console.log(tasksFromLocal);
+    return todoListSlice.actions.setAllTasks(JSON.parse(tasksFromLocal));
+  }
+  console.log('No tasks in localStorage');
+  return todoListSlice.actions.setAllTasks([]);
+};
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
