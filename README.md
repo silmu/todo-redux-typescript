@@ -2,7 +2,7 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
-# ToDo App (React, Redux, TypeScript)
+# 📝 ToDo App (React, Redux, TypeScript)
 
 CRUD ToDO app that allows a user to add, edit, delete and mark a todo task as completed.
 
