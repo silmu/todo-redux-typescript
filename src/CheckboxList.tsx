@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
+
 import { useDispatch } from 'react-redux';
 import {
   editTask,
@@ -36,7 +37,6 @@ const CheckboxList: React.FC<{
         return t;
       }
     );
-    console.log(updatedLocalTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedLocalTasks));
   };
 
@@ -59,7 +59,6 @@ const CheckboxList: React.FC<{
           return t;
         }
       );
-      console.log(updatesLocalTasks);
       localStorage.setItem('tasks', JSON.stringify(updatesLocalTasks));
     }
   };
@@ -76,6 +75,7 @@ const CheckboxList: React.FC<{
     );
     localStorage.setItem('tasks', JSON.stringify([filtered]));
   };
+
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
       {list.map(task => {

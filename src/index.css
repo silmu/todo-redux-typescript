@@ -56,3 +56,14 @@ header {
 .todo-item {
   margin-bottom: 1rem;
 }
+
+@media (max-width: 600px) {
+  #outlined-basic {
+  }
+  header {
+    padding: 1px 1rem;
+  }
+  .todo {
+    width: 100vw;
+  }
+}

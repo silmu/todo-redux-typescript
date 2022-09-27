@@ -35,7 +35,7 @@ const InputTask: React.FC = () => {
         label='Add task'
         variant='outlined'
         color='secondary'
-        sx={{ marginRight: '1rem', width: '86%' }}
+        sx={{ marginRight: '1rem', width: '81%' }}
         onChange={e => dispatch(setInputText(e.target.value))}
       />
       <Fab size='medium' color='secondary' aria-label='add'>

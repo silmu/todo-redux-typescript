@@ -61,10 +61,8 @@ export const {
 export const initializeTasks = () => {
   const tasksFromLocal = localStorage.getItem('tasks') || null;
   if (tasksFromLocal) {
-    console.log(tasksFromLocal);
     return todoListSlice.actions.setAllTasks(JSON.parse(tasksFromLocal));
   }
-  console.log('No tasks in localStorage');
   return todoListSlice.actions.setAllTasks([]);
 };
 
