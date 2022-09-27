@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import CheckboxList from './CheckboxList';
+import TodoList from './TodoList';
 import InputTask from './InputTask';
 import Tutorial from './Tutorial';
 
@@ -29,7 +29,7 @@ const App: React.FC = () => {
         </header>
         <div className='content-todo'>
           <InputTask />
-          <CheckboxList list={list} />
+          <TodoList list={list} />
         </div>
       </div>
     </div>

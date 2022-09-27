@@ -49,6 +49,7 @@ export const todoListSlice = createSlice({
 });
 
 export const {
+  setAllTasks,
   addTask,
   editTask,
   deleteTask,
