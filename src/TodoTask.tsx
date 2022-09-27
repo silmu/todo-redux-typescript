@@ -110,7 +110,7 @@ const TodoTask: React.FC<{
             label='Edit task'
             variant='outlined'
             color='secondary'
-            sx={{ marginRight: '1rem', width: '86%' }}
+            sx={{ marginRight: '1rem', width: '84%' }}
             onChange={e => dispatch(setEditText(e.target.value))}
             onKeyPress={e => handleEditTask(e, task)}
           />
