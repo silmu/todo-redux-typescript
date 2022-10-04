@@ -1,6 +1,7 @@
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+[![CI](https://github.com/silmu/todo-redux-typescript/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/silmu/todo-redux-typescript/actions/workflows/main.yml)
 
 # 📝 ToDo App (React, Redux, TypeScript)
 
