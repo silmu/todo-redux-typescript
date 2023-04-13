@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import type { RootState, AppDispatch } from '../../app/store';
+import { createSlice } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../../app/store";
 
 export const todoListSlice = createSlice({
-  name: 'todo list',
+  name: "todo list",
   initialState: {
     todos: [
-      { id: 1, name: 'task 1', checked: false },
-      { id: 2, name: 'task 2', checked: false },
-      { id: 3, name: 'task 3', checked: false },
+      { id: 1, name: "task 1", checked: false },
+      { id: 2, name: "task 2", checked: false },
+      { id: 3, name: "task 3", checked: false },
     ],
-    inputText: '',
-    editText: '',
+    inputText: "",
+    editText: "",
   },
   reducers: {
     setAllTasks: (state, action) => {
@@ -32,9 +32,7 @@ export const todoListSlice = createSlice({
       });
     },
     editTask: (state, action) => {
-      state.todos.map(task =>
-        task.id === action.payload ? (task.name = state.editText) : task
-      );
+      state.todos.map(task => (task.id === action.payload ? (task.name = state.editText) : task));
     },
     deleteTask: (state, action) => {
       state.todos = state.todos.filter(task => task.id !== action.payload);
@@ -48,19 +46,12 @@ export const todoListSlice = createSlice({
   },
 });
 
-export const {
-  setAllTasks,
-  addTask,
-  editTask,
-  deleteTask,
-  setInputText,
-  setEditText,
-  markAsDone,
-} = todoListSlice.actions;
+export const { setAllTasks, addTask, editTask, deleteTask, setInputText, setEditText, markAsDone } =
+  todoListSlice.actions;
 
 //Initialize state if localStorage is not empty
 export const initializeTasks = () => {
-  const tasksFromLocal = localStorage.getItem('tasks') || null;
+  const tasksFromLocal = localStorage.getItem("tasks") || null;
   if (tasksFromLocal) {
     return todoListSlice.actions.setAllTasks(JSON.parse(tasksFromLocal));
   }
